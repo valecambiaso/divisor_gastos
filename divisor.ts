@@ -1,13 +1,7 @@
 import { Persona } from "./entidades/persona";
 
-let personas: Persona[] = [
-  { nombre: "Sofía", gastos: [ { descripcion: "Pizza", monto: 80 }, { descripcion: "Taxi", monto: 30 } ], deuda: 0 },
-  { nombre: "Tomás", gastos: [ { descripcion: "Bebidas", monto: 50 } ], deuda: 0 },
-  { nombre: "Uriel", gastos: [ { descripcion: "Postre", monto: 20 } ], deuda: 0 },
-  { nombre: "Valentina", gastos: [], deuda: 0 }
-];
-
 export function dividirGastos(personas: Persona[]): string {
+  personas = personas.map(persona => ({ ...persona }));
 
   let output = '';
   
@@ -62,5 +56,3 @@ export function dividirGastos(personas: Persona[]): string {
 
   return output;
 }
-
-//dividirGastos(personas);

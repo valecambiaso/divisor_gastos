@@ -1,10 +1,5 @@
-let personas = [
-    { nombre: "Sofía", gastos: [{ descripcion: "Pizza", monto: 80 }, { descripcion: "Taxi", monto: 30 }], deuda: 0 },
-    { nombre: "Tomás", gastos: [{ descripcion: "Bebidas", monto: 50 }], deuda: 0 },
-    { nombre: "Uriel", gastos: [{ descripcion: "Postre", monto: 20 }], deuda: 0 },
-    { nombre: "Valentina", gastos: [], deuda: 0 }
-];
 export function dividirGastos(personas) {
+    personas = personas.map(persona => (Object.assign({}, persona)));
     let output = '';
     let totalGastos = 0;
     for (let persona of personas) {
@@ -44,4 +39,3 @@ export function dividirGastos(personas) {
     }
     return output;
 }
-//dividirGastos(personas);
