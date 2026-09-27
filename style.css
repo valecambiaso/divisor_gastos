@@ -121,6 +121,32 @@ body {
   margin-bottom: 0.5rem;
 }
 
+.btn-eliminar {
+  color: var(--bs-secondary-color);
+}
+
+.btn-eliminar:hover {
+  color: var(--bs-danger);
+  background: var(--bs-danger-bg-subtle);
+}
+
+/* Modal de confirmación */
+.modal-content {
+  border-radius: 1rem;
+}
+
+.confirm-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 50%;
+  background: var(--bs-danger-bg-subtle);
+  color: var(--bs-danger);
+  font-size: 1.5rem;
+}
+
 /* Resultado */
 .stat {
   background: #f4f5fb;

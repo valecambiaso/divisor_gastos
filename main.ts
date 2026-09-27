@@ -8,6 +8,27 @@ const btnAgregar = document.getElementById("btnAgregarPersona")!;
 const listaPersonas = document.getElementById("listaPersonas")!;
 const btnCalcular = document.getElementById("btnCalcular")!;
 const resultado = document.getElementById("resultado")!;
+const btnReiniciar = document.getElementById("btnReiniciar") as HTMLButtonElement;
+const modalConfirmar = new (window as any).bootstrap.Modal(document.getElementById("modalConfirmar"));
+const modalTitulo = document.getElementById("modalConfirmarTitulo")!;
+const modalTexto = document.getElementById("modalConfirmarTexto")!;
+const btnConfirmar = document.getElementById("btnConfirmar")!;
+
+let accionPendiente: (() => void) | null = null;
+
+function pedirConfirmacion(titulo: string, texto: string, textoBoton: string, accion: () => void) {
+  modalTitulo.textContent = titulo;
+  modalTexto.textContent = texto;
+  btnConfirmar.textContent = textoBoton;
+  accionPendiente = accion;
+  modalConfirmar.show();
+}
+
+btnConfirmar.addEventListener("click", () => {
+  accionPendiente?.();
+  accionPendiente = null;
+  modalConfirmar.hide();
+});
 
 btnAgregar.addEventListener("click", () => {
   if (!inputNombre.value.trim()) return;
@@ -26,6 +47,8 @@ function formatMonto(monto: number): string {
 }
 
 function renderPersonas() {
+  btnReiniciar.disabled = personas.length === 0;
+
   if (personas.length === 0) {
     listaPersonas.innerHTML = `
       <div class="empty-state">
@@ -48,6 +71,7 @@ function renderPersonas() {
               <div class="small text-body-secondary">${p.gastos.length} ${p.gastos.length === 1 ? "gasto" : "gastos"}</div>
             </div>
             <span class="badge rounded-pill text-bg-light border fs-6 monto">${formatMonto(total)}</span>
+            <button class="btn btn-sm btn-eliminar" onclick="eliminarPersona(${index})" title="Borrar persona" aria-label="Borrar persona"><i class="bi bi-trash3"></i></button>
           </div>
           ${p.gastos.length ? `
           <div class="mb-3">
@@ -113,6 +137,34 @@ renderPersonas();
   personas[index].gastos.push({ descripcion: desc.value, monto: parseFloat(monto.value) });
   renderPersonas();
 };
+
+(window as any).eliminarPersona = (index: number) => {
+  const persona = personas[index];
+  const cantidad = persona.gastos.length;
+  pedirConfirmacion(
+    `¿Borrar a ${persona.nombre}?`,
+    cantidad ? "También se borran sus gastos." : "No tiene gastos cargados.",
+    "Borrar",
+    () => {
+      personas.splice(index, 1);
+      resultado.innerHTML = "";
+      renderPersonas();
+    }
+  );
+};
+
+btnReiniciar.addEventListener("click", () => {
+  pedirConfirmacion(
+    "¿Empezar de nuevo?",
+    "Se borran todas las personas y sus gastos.",
+    "Reiniciar",
+    () => {
+      personas = [];
+      resultado.innerHTML = "";
+      renderPersonas();
+    }
+  );
+});
 
 btnCalcular.addEventListener("click", () => {
   resultado.innerHTML = "";
