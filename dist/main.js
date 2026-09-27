@@ -66,7 +66,7 @@ function renderPersonas() {
           <div class="mb-3">
             ${p.gastos.map(g => `
               <div class="gasto-item">
-                <span>${g.descripcion}</span>
+                <span>${g.descripcion || `<span class="text-body-secondary fst-italic">Sin descripción</span>`}</span>
                 <span class="monto">${formatMonto(g.monto)}</span>
               </div>`).join("")}
           </div>` : ""}
@@ -117,9 +117,9 @@ renderPersonas();
 window.agregarGasto = (index) => {
     const desc = document.getElementById(`desc-${index}`);
     const monto = document.getElementById(`monto-${index}`);
-    if (!desc.value || !monto.value)
+    if (!monto.value)
         return;
-    personas[index].gastos.push({ descripcion: desc.value, monto: parseFloat(monto.value) });
+    personas[index].gastos.push({ descripcion: desc.value.trim(), monto: parseFloat(monto.value) });
     renderPersonas();
 };
 window.eliminarPersona = (index) => {
