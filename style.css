@@ -1,0 +1,154 @@
+:root {
+  --bs-primary: #5b5bd6;
+  --bs-primary-rgb: 91, 91, 214;
+  --bs-body-font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+body {
+  background: #f4f5fb;
+}
+
+/* Encabezado */
+.hero {
+  background: linear-gradient(135deg, #5b5bd6 0%, #8b5cf6 100%);
+  padding: 3rem 0 5.5rem;
+}
+
+.hero-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 1rem;
+  background: rgba(255, 255, 255, 0.18);
+  font-size: 1.6rem;
+}
+
+.app-container {
+  max-width: 720px;
+  margin-top: -3.5rem;
+}
+
+.card {
+  border-radius: 1rem;
+}
+
+/* Botones */
+.btn-primary {
+  --bs-btn-bg: #5b5bd6;
+  --bs-btn-border-color: #5b5bd6;
+  --bs-btn-hover-bg: #4a4ac4;
+  --bs-btn-hover-border-color: #4a4ac4;
+  --bs-btn-active-bg: #4040b0;
+  --bs-btn-active-border-color: #4040b0;
+}
+
+.btn-outline-primary {
+  --bs-btn-color: #5b5bd6;
+  --bs-btn-border-color: #5b5bd6;
+  --bs-btn-hover-bg: #5b5bd6;
+  --bs-btn-hover-border-color: #5b5bd6;
+  --bs-btn-active-bg: #4a4ac4;
+  --bs-btn-active-border-color: #4a4ac4;
+}
+
+.btn-success {
+  border-radius: 0.75rem;
+  padding-block: 0.85rem;
+  font-weight: 600;
+}
+
+.form-control:focus {
+  border-color: #a5a5f0;
+  box-shadow: 0 0 0 0.25rem rgba(91, 91, 214, 0.2);
+}
+
+/* Tarjetas de personas */
+.persona-card {
+  transition: box-shadow 0.15s ease;
+}
+
+.persona-card:hover {
+  box-shadow: 0 0.5rem 1.25rem rgba(0, 0, 0, 0.08) !important;
+}
+
+.avatar {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 50%;
+  background: #ececfd;
+  color: #5b5bd6;
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.gasto-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0;
+  border-bottom: 1px dashed var(--bs-border-color);
+}
+
+.gasto-item:last-child {
+  border-bottom: 0;
+}
+
+.monto {
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+}
+
+.empty-state {
+  border: 2px dashed #d6d7ea;
+  border-radius: 1rem;
+  padding: 2.5rem 1rem;
+  color: var(--bs-secondary-color);
+  text-align: center;
+}
+
+.empty-state i {
+  font-size: 2rem;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+/* Resultado */
+.stat {
+  background: #f4f5fb;
+  border-radius: 0.75rem;
+  padding: 1rem;
+}
+
+.stat .valor {
+  font-size: 1.5rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.pago {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.85rem 1rem;
+  border-radius: 0.75rem;
+  background: #f8f9fc;
+}
+
+.pago + .pago {
+  margin-top: 0.5rem;
+}
+
+.pago .flecha {
+  color: #8b5cf6;
+}
+
+.pago .monto {
+  margin-left: auto;
+  color: #198754;
+}
