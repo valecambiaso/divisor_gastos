@@ -1,8 +1,12 @@
-# Divisor de Gastos 💸
+# Vaquita 💸
 
-A small web app for splitting shared expenses in a group. Add people and what each one paid, and it tells you who owes whom, using as few payments as possible.
+A small web app for splitting shared expenses in a group. Add people and what each one paid, and it tells you who owes whom and how much, using as few payments as possible.
 
 The interface and the code are in Spanish 🙃.
+
+## Why "Vaquita"?
+
+In Argentina *hacer una vaquita* (literally "to make a little cow") means pooling money with friends to pay for something together.
 
 ## How it works
 
