@@ -16,6 +16,9 @@ inputNombre.addEventListener("keydown", (e) => {
     if (e.key === "Enter")
         btnAgregar.click();
 });
+function formatMonto(monto) {
+    return "$" + monto.toLocaleString("es-AR", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+}
 function renderPersonas() {
     if (personas.length === 0) {
         listaPersonas.innerHTML = `
@@ -37,14 +40,14 @@ function renderPersonas() {
               <div class="fw-semibold fs-5">${p.nombre}</div>
               <div class="small text-body-secondary">${p.gastos.length} ${p.gastos.length === 1 ? "gasto" : "gastos"}</div>
             </div>
-            <span class="badge rounded-pill text-bg-light border fs-6 monto">$${total.toFixed(2)}</span>
+            <span class="badge rounded-pill text-bg-light border fs-6 monto">${formatMonto(total)}</span>
           </div>
           ${p.gastos.length ? `
           <div class="mb-3">
             ${p.gastos.map(g => `
               <div class="gasto-item">
                 <span>${g.descripcion}</span>
-                <span class="monto">$${g.monto.toFixed(2)}</span>
+                <span class="monto">${formatMonto(g.monto)}</span>
               </div>`).join("")}
           </div>` : ""}
           <div class="input-group">
@@ -71,17 +74,19 @@ function renderResultado(mensaje) {
       <div class="card-body p-4">
         <h2 class="h5 fw-bold mb-3"><i class="bi bi-receipt me-2"></i>Resultado</h2>
         <div class="row g-3 mb-4">
-          <div class="col-6"><div class="stat"><div class="small text-body-secondary">Gasto total</div><div class="valor">$${total}</div></div></div>
-          <div class="col-6"><div class="stat"><div class="small text-body-secondary">Por persona</div><div class="valor">$${porPersona}</div></div></div>
+          <div class="col-6"><div class="stat"><div class="small text-body-secondary">Gasto total</div><div class="valor">${formatMonto(parseFloat(total))}</div></div></div>
+          <div class="col-6"><div class="stat"><div class="small text-body-secondary">Por persona</div><div class="valor">${formatMonto(parseFloat(porPersona))}</div></div></div>
         </div>
         ${pagos.length
         ? pagos.map(([, deudor, monto, acreedor]) => `
             <div class="pago">
               <span class="avatar">${deudor.charAt(0).toUpperCase()}</span>
-              <span class="fw-semibold">${deudor}</span>
-              <i class="bi bi-arrow-right flecha"></i>
-              <span class="fw-semibold">${acreedor}</span>
-              <span class="monto fs-5">$${monto}</span>
+              <span class="nombres">
+                <span class="fw-semibold">${deudor}</span>
+                <i class="bi bi-arrow-right flecha mx-1"></i>
+                <span class="fw-semibold">${acreedor}</span>
+              </span>
+              <span class="monto fs-5">${formatMonto(parseFloat(monto))}</span>
             </div>`).join("")
         : `<div class="alert alert-success mb-0"><i class="bi bi-check-circle me-2"></i>¡No hay deudas que saldar!</div>`}
       </div>
